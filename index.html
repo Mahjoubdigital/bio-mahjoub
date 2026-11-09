@@ -206,6 +206,18 @@
 
 
   /* ---------- SECTOR CATALOGUE ---------- */
+.cat-filter{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 12px}
+  .fchip{
+    display:inline-flex;align-items:center;gap:5px;
+    border:1.5px solid #e3ddf2;background:#fff;color:#5f5378;
+    border-radius:999px;padding:7px 11px;font-family:inherit;font-size:11.5px;font-weight:700;
+    cursor:pointer;transition:all .18s ease;line-height:1;
+  }
+  .fchip b{font-size:9.5px;font-weight:800;opacity:.6}
+  .fchip:hover{border-color:#6113ad;color:#6113ad}
+  .fchip.on{background:#6113ad;border-color:#6113ad;color:#fff;box-shadow:0 5px 14px rgba(97,19,173,.24)}
+  .fchip.on b{opacity:.8}
+  .cat-card.hide{display:none}
   .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .cat-card{
     position:relative;display:block;border-radius:10px;overflow:hidden;
@@ -568,6 +580,7 @@
       </button>
       <div class="acc-panel"><div class="acc-inner"><div class="acc-card">
         <p id="i-cat-sub"></p>
+        <div class="cat-filter" id="catFilter" role="group" aria-label="Filter"></div>
         <div class="cat-grid" id="catalogGrid"></div>
       </div></div></div>
     </div>
@@ -672,26 +685,26 @@
   };
 
   var CATALOG = [
-    {id:"barber", url:"https://web.mahjoub.click/sites/barber/index.html"},
-    {id:"mecanico", url:"https://web.mahjoub.click/sites/mecanico/index.html"},
-    {id:"mudanza", url:"https://web.mahjoub.click/sites/mudanza/index.html"},
-    {id:"transporte", url:"https://web.mahjoub.click/sites/transporte/index.html"},
-    {id:"construccion", url:"https://empresa-de-construccion.vercel.app/"},
-    {id:"cafeteria", url:"https://web.mahjoub.click/sites/cafeteria/index.html"},
-    {id:"salon", url:"https://web.mahjoub.click/sites/salon/index.html"},
-    {id:"arquitecto", url:"https://web.mahjoub.click/sites/arquitecto/index.html"},
-    {id:"abogado", url:"https://bufete-abogados-tawny.vercel.app/"},
-    {id:"spa", url:"https://web.mahjoub.click/sites/spa/index.html"},
-    {id:"dentista", url:"https://web.mahjoub.click/sites/dentista/index.html"},
-    {id:"limpieza", url:"https://web.mahjoub.click/sites/limpieza/index.html"},
-    {id:"comida", url:"https://web.mahjoub.click/sites/comida/index.html"},
-    {id:"pintura", url:"https://arij-color.vercel.app/"},
-    {id:"inmobiliaria", url:"https://multiservices-immobiliers.vercel.app/"},
-    {id:"yeso", url:"https://aljibs-pro.vercel.app/"},
-    {id:"marbre", url:"https://marbre-maroc.vercel.app/"},
-    {id:"viajes", url:"https://travel-khaki-beta.vercel.app/"},
-    {id:"pintura2", url:"https://paintshop-six.vercel.app/"},
-    {id:"renovation", url:"https://maroc-reno.vercel.app/"}
+    {id:"barber", type:"salud", url:"https://web.mahjoub.click/sites/barber/index.html"},
+    {id:"mecanico", type:"servicios", url:"https://web.mahjoub.click/sites/mecanico/index.html"},
+    {id:"mudanza", type:"servicios", url:"https://web.mahjoub.click/sites/mudanza/index.html"},
+    {id:"transporte", type:"servicios", url:"https://web.mahjoub.click/sites/transporte/index.html"},
+    {id:"construccion", type:"construccion", url:"https://empresa-de-construccion.vercel.app/"},
+    {id:"cafeteria", type:"restauracion", url:"https://web.mahjoub.click/sites/cafeteria/index.html"},
+    {id:"salon", type:"salud", url:"https://web.mahjoub.click/sites/salon/index.html"},
+    {id:"arquitecto", type:"servicios", url:"https://web.mahjoub.click/sites/arquitecto/index.html"},
+    {id:"abogado", type:"servicios", url:"https://bufete-abogados-tawny.vercel.app/"},
+    {id:"spa", type:"salud", url:"https://web.mahjoub.click/sites/spa/index.html"},
+    {id:"dentista", type:"salud", url:"https://web.mahjoub.click/sites/dentista/index.html"},
+    {id:"limpieza", type:"servicios", url:"https://web.mahjoub.click/sites/limpieza/index.html"},
+    {id:"comida", type:"restauracion", url:"https://web.mahjoub.click/sites/comida/index.html"},
+    {id:"pintura", type:"construccion", url:"https://arij-color.vercel.app/"},
+    {id:"inmobiliaria", type:"servicios", url:"https://multiservices-immobiliers.vercel.app/"},
+    {id:"yeso", type:"construccion", url:"https://aljibs-pro.vercel.app/"},
+    {id:"marbre", type:"construccion", url:"https://marbre-maroc.vercel.app/"},
+    {id:"viajes", type:"servicios", url:"https://travel-khaki-beta.vercel.app/"},
+    {id:"pintura2", type:"construccion", url:"https://paintshop-six.vercel.app/"},
+    {id:"renovation", type:"construccion", url:"https://maroc-reno.vercel.app/"}
   ];
 
   var I18N = {
@@ -712,7 +725,7 @@
       zones: ["Barbería","Mecánico","Mudanzas","Transporte","Construcción","Cafetería","Salón de belleza","Arquitecto","Abogado","Spa","Dentista","Limpieza","Comida rápida","Pintura","Inmobiliaria","Yeso y decoración","Mármol y piedra","Viajes","Reformas"],
       cta: "PRESUPUESTO GRATIS POR WHATSAPP",
       foot: "Copyright © 2026 Mahjoub.click · Diseñador Web WordPress &amp; SEO Local",
-      social: {site:"Sitio web", whatsapp:"WhatsApp", mail:"contact@mahjoub.click"},
+      social: {site:"Sitio web", whatsapp:"WhatsApp", mail:"contact@mahjoub.click", catalog:"Catálogo de sectores"},
       slides: [
         {t:"Barbería moderna", s:"Web con reservas online"},
         {t:"Mármol y piedra natural", s:"Catálogo de materiales"},
@@ -738,6 +751,7 @@
       catSub: "Las 20 webs que ya he diseñado. Toca cualquiera para abrir el proyecto real.",
       catView: "Ver web",
       catCount: "proyectos",
+      catFilters: {all:"Todos", restauracion:"Restauración", construccion:"Construcción", servicios:"Servicios", salud:"Salud y belleza"},
       catalog: {
         barber:"Barbería",
         mecanico:"Mecánico",
@@ -849,6 +863,7 @@
       catSub: "Les 20 sites que j'ai déjà conçus. Touchez-en un pour ouvrir le projet réel.",
       catView: "Voir le site",
       catCount: "projets",
+      catFilters: {all:"Tous", restauracion:"Restauration", construccion:"Construction", servicios:"Services", salud:"Santé et beauté"},
       catalog: {
         barber:"Barbier",
         mecanico:"Mécanicien",
@@ -960,6 +975,7 @@
       catSub: "The 20 websites I have already built. Tap any of them to open the live project.",
       catView: "View site",
       catCount: "projects",
+      catFilters: {all:"All", restauracion:"Food & drink", construccion:"Construction", servicios:"Services", salud:"Health & beauty"},
       catalog: {
         barber:"Barbershop",
         mecanico:"Car repair",
@@ -1071,6 +1087,7 @@
       catSub: "عشرون موقعاً صممتها بالفعل. اضغط على أي منها لفتح المشروع الحقيقي.",
       catView: "فتح الموقع",
       catCount: "مشروعاً",
+      catFilters: {all:"الكل", restauracion:"المطاعم", construccion:"البناء", servicios:"الخدمات", salud:"الصحة والتجميل"},
       catalog: {
         barber:"صالون حلاقة",
         mecanico:"ميكانيكي",
@@ -1238,8 +1255,7 @@
   var LINKS = [
     ["site", CONFIG.site],
     ["whatsapp", "https://wa.me/" + CONFIG.whatsapp],
-    ["mail", "mailto:" + CONFIG.email],
-    ["catalog", CONFIG.catalog]
+    ["mail", "mailto:" + CONFIG.email]
   ];
   var socials = $("#socials");
   function buildSocials(){
@@ -1251,10 +1267,6 @@
       a.target = "_blank";
       a.rel = "noopener";
       a.innerHTML = ICONS[p[0]] + "<span></span>" + OUT;
-      if (p[0] === "catalog"){
-        a.removeAttribute("target");
-        a.addEventListener("click", function(e){ e.preventDefault(); openAcc("catalog"); });
-      }
       socials.appendChild(a);
     });
     paintSocials();
@@ -1313,17 +1325,51 @@
     for (var i = 0; i < caps.length; i++) caps[i].textContent = d.gallery[i] || "";
   }
 
+  var catFilter = "all";
+  var CAT_ORDER = ["all","restauracion","construccion","servicios","salud"];
+
+  function applyCatFilter(){
+    var cards = $("#catalogGrid").children;
+    for (var i = 0; i < cards.length; i++){
+      var ty = cards[i].getAttribute("data-type");
+      var hide = (catFilter !== "all" && ty !== catFilter);
+      cards[i].classList.toggle("hide", hide);
+    }
+  }
+
   function paintCatalog(){
     var d = t();
     $("#i-cat-title").textContent = d.catTitle;
     $("#i-cat-sub").innerHTML = esc(d.catSub) + ' <span class="cat-count">' +
       CATALOG.length + " " + esc(d.catCount) + "</span>";
+
     $("#catalogGrid").innerHTML = CATALOG.map(function(c){
-      return '<a class="cat-card" href="' + c.url + '" target="_blank" rel="noopener">' +
+      return '<a class="cat-card" data-type="' + c.type + '" href="' + c.url + '" target="_blank" rel="noopener">' +
         '<img src="' + CATPHOTOS[c.id] + '" alt="' + esc(d.catalog[c.id]) + '" loading="lazy" decoding="async">' +
         '<span class="cat-name">' + esc(d.catalog[c.id]) + "</span>" +
         '<span class="cat-view">' + esc(d.catView) + "</span></a>";
     }).join("");
+
+    var counts = {all: CATALOG.length};
+    CATALOG.forEach(function(c){ counts[c.type] = (counts[c.type] || 0) + 1; });
+
+    var box = $("#catFilter");
+    box.innerHTML = CAT_ORDER.map(function(k){
+      return '<button class="fchip' + (k === catFilter ? " on" : "") + '" type="button" data-filter="' +
+        k + '">' + esc(d.catFilters[k]) + "<b>" + (counts[k] || 0) + "</b></button>";
+    }).join("");
+
+    Array.prototype.forEach.call(box.querySelectorAll(".fchip"), function(btn){
+      btn.addEventListener("click", function(){
+        catFilter = btn.getAttribute("data-filter");
+        Array.prototype.forEach.call(box.querySelectorAll(".fchip"), function(b){
+          b.classList.toggle("on", b === btn);
+        });
+        applyCatFilter();
+      });
+    });
+
+    applyCatFilter();
   }
 
   /* ===================== LANGUAGE ===================== */
